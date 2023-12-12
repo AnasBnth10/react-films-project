@@ -1,0 +1,66 @@
+import { Col, Container, Row } from "react-bootstrap";
+import Layout from "../../../common/layout/Layout";
+import FilmsList from "../../../films/films-list/FilmsList";
+import './FavoriteFilmsPage.scss';
+import { useEffect, useState } from "react";
+import { FilmsApiService } from "../../../../helper/film.service";
+import { SearchFilter } from "../../../../enum/SearchFilter";
+import { Movies as MoviesModel } from "../../models/movie-model";
+import UserStatistics from "../../../films/statistics/UserStatistics";
+
+
+interface IProps {
+
+}
+
+const FavoriteFilmsPage: React.FC<IProps> = ({
+
+}) => {
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [movies, setMovies] = useState<MoviesModel>();
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        FilmsApiService.searchMoviesBySearch("Batman").then(
+            movies => {
+                setMovies(movies)
+            }
+        ).catch(() => setError(true))
+        .finally(() => setIsLoading(false));
+    }, []);
+
+    
+
+
+    return (
+        <Layout>
+            <h1>My Favorite Movies</h1>
+            <p>
+                Welcome to the My Favorite Movies page! Here, you can view and manage your list of favorite movies.
+            </p>
+            <div className="app-container">
+                <section className="center-container">
+                    <div style={{ padding: '20px' }}>
+                        <h2>Liked Films Collection</h2>
+                        <FilmsList movies={movies?.Search || []}/>
+                    </div>
+                </section>
+
+                {/* Conteneur à droite (beaucoup moins large) */}
+                <aside className="right-container">
+                    {/* Contenu du conteneur à droite */}
+                    <div style={{ padding: '20px' }}>
+                        <h2>Viewing Statistics</h2>
+                        <UserStatistics />
+                        {/* Mettez ici le contenu de votre aside */}
+                    </div>
+                </aside>
+            </div>
+        </Layout>
+    )
+}
+
+export default FavoriteFilmsPage;

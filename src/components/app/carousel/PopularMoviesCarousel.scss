@@ -1,0 +1,21 @@
+
+.carousel
+{
+  padding: 0;
+  margin:0;
+  width: 80rem;
+  margin: 0 auto;
+   /* Adjust as needed */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  margin: 0 -150px; /* Adjust as needed */
+}
+
+.films-row {
+    
+    display: flex !important;
+    justify-content: center;
+    gap: 0.6rem;
+}

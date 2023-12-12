@@ -1,0 +1,35 @@
+@import '../styles/variables.scss';
+
+
+.film-card {
+    background-color: $color-primary;
+    width: 18rem;
+    margin-top: 2rem;
+    color: black !important;
+  
+}
+
+
+.film-card img {
+    height: 17rem;
+    
+}
+
+.film-card-body {
+    background-color: $color-primary;
+    color: black !important;
+    flex-grow: 1; /* Allow the body to grow within the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-buttons {
+  
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    
+}
+
+
