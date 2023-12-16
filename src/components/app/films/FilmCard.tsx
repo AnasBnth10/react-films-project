@@ -1,10 +1,8 @@
 import { Button, Card } from "react-bootstrap";
-import Layout from "../common/layout/Layout"
 import './FilmCard.scss';
-import ViewButton from "../common/buttons/ViewButton";
-import InfoButton from "../common/buttons/InfoButton";
-import AddButton from "../common/buttons/AddOrRemoveButton";
-import AddOrRemoveButton from "../common/buttons/AddOrRemoveButton";
+import AddOrRemoveButton from "../../common/buttons/AddOrRemoveButton";
+import ViewButton from "../../common/buttons/ViewButton";
+
 
 interface IProps {
     title: string,

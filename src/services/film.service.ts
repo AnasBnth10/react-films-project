@@ -1,5 +1,4 @@
-import { SearchFilter } from "../enum/SearchFilter";
-import { Movie, Movies } from "../../src/components/app/models/movie-model";
+import { Movie, Movies } from "../components/app/models/movie-model";
 
 export class FilmsApiService {
 

@@ -1,12 +1,12 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Layout from "../../../common/layout/Layout";
-import FilmsList from "../../../films/films-list/FilmsList";
 import './FavoriteFilmsPage.scss';
 import { useEffect, useState } from "react";
-import { FilmsApiService } from "../../../../helper/film.service";
-import { SearchFilter } from "../../../../enum/SearchFilter";
+import { FilmsApiService } from "../../../../services/film.service";
 import { Movies as MoviesModel } from "../../models/movie-model";
-import UserStatistics from "../../../films/statistics/UserStatistics";
+import FilmsList from "../../films/films-list/FilmsList";
+import UserStatistics from "../../films/statistics/UserStatistics";
+
 
 
 interface IProps {

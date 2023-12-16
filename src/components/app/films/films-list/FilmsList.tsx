@@ -1,8 +1,7 @@
 import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
-import Layout from "../../common/layout/Layout";
 import FilmCard from "../FilmCard";
 import './FilmsList.scss';
-import { Movie, Movies } from "../../app/models/movie-model";
+import { Movie } from "../../models/movie-model";
 
 
 interface IProps {

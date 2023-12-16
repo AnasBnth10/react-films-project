@@ -1,13 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { FilmsApiService } from "../../../../helper/film.service";
+import { FilmsApiService } from "../../../../services/film.service";
 import SearchButton from "../../../common/buttons/SearchButton";
 import Layout from "../../../common/layout/Layout";
 import './SearchFilmPage.scss';
-import { SearchFilter } from "../../../../enum/SearchFilter";
 import { Movie, Movies as MoviesModel } from "../../models/movie-model";
-import FilmsList from "../../../films/films-list/FilmsList";
 import { Carousel } from "react-bootstrap";
 import PopularMoviesCarousel from "../../carousel/PopularMoviesCarousel";
+import FilmsList from "../../films/films-list/FilmsList";
 
 interface IProps {
 

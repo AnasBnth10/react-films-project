@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Carousel } from "react-bootstrap";
-import FilmCard from "../../films/FilmCard";
 import { Movie } from "../models/movie-model";
 import './PopularMoviesCarousel.scss';
+import FilmCard from "../films/FilmCard";
 
 
 
