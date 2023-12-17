@@ -2,14 +2,17 @@ import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import FilmCard from "../FilmCard";
 import './FilmsList.scss';
 import { Movie } from "../../models/movie-model";
+import { User } from "../../models/user-model";
 
 
 interface IProps {
-  movies: Movie[]
+  movies: Movie[],
+  user: User
 }
 
 const FavoriteFilmsPage: React.FC<IProps> = ({
-movies
+movies,
+user
 }) => {
     const cartes = [
         { titre: 'Carte 1', contenu: 'Contenu de la carte 1' },
@@ -21,7 +24,7 @@ movies
         
         <Container className="films-list">
           {movies.map((movie, index) => (             
-            <FilmCard title={movie.Title} img={movie.Poster} year={movie.Year} type={movie.Type}/>                     
+            <FilmCard id={movie.imdbID} user={user} title={movie.Title} img={movie.Poster} year={movie.Year} type={movie.Type}/>                     
           ))}       
       </Container>
     )

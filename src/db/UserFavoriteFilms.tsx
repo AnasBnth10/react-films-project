@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
+import { User } from '../components/app/models/user-model';
+import { UserService } from '../services/user.service';
 
-export const favoritesState = atom<string[]>({
-  key: 'favoritesFilmsState',
-  default: [], // La valeur par défaut est une liste vide
+export const userState = atom<User>({
+  key: 'userState',
+  default: UserService.getCurrentUserData(), // La valeur par défaut est une liste vide
 });

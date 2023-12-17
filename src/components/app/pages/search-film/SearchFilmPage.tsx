@@ -3,10 +3,12 @@ import { FilmsApiService } from "../../../../services/film.service";
 import SearchButton from "../../../common/buttons/SearchButton";
 import Layout from "../../../common/layout/Layout";
 import './SearchFilmPage.scss';
-import { Movie, Movies as MoviesModel } from "../../models/movie-model";
-import { Carousel } from "react-bootstrap";
+import { Movies as MoviesModel } from "../../models/movie-model";
 import PopularMoviesCarousel from "../../carousel/PopularMoviesCarousel";
 import FilmsList from "../../films/films-list/FilmsList";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../../db/UserFavoriteFilms";
+import { User } from "../../models/user-model";
 
 interface IProps {
 
@@ -20,6 +22,7 @@ const SearchFilmPage: React.FC<IProps> = ({
     const [error, setError] = useState(false);
     const [popularMovies, setPopularMovies] = useState<MoviesModel>();
     const [searchMovies, setSearchMovies] = useState<MoviesModel>();
+    const user: User= useRecoilValue(userState);
 
     const [search,setSearch] = useState("");
 
@@ -70,7 +73,7 @@ const SearchFilmPage: React.FC<IProps> = ({
 
             <main>
                 <div>
-                {!isLoadingSearchMovies && !error &&<FilmsList movies={searchMovies?.Search || []} />}
+                {!isLoadingSearchMovies && !error &&<FilmsList user={user} movies={searchMovies?.Search || []} />}
                 {!isLoadingSearchMovies && error && <p>Error loading movies. Please try again.</p>}
 
                 </div>
@@ -80,7 +83,7 @@ const SearchFilmPage: React.FC<IProps> = ({
                         <h2>Popular Movie List</h2>
                         <p>Explore our collection of exciting movies.</p>
 
-                        <PopularMoviesCarousel movies={popularMovies?.Search || []} />
+                        <PopularMoviesCarousel user={user}  movies={popularMovies?.Search || []} />
                     </div>
                 }
             </main>

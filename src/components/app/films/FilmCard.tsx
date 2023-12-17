@@ -2,20 +2,25 @@ import { Button, Card } from "react-bootstrap";
 import './FilmCard.scss';
 import AddOrRemoveButton from "../../common/buttons/AddOrRemoveButton";
 import ViewButton from "../../common/buttons/ViewButton";
+import { User } from "../models/user-model";
 
 
 interface IProps {
+    id: string,
     title: string,
     year: string,
     img: string,
-    type: string
+    type: string,
+    user: User
 }
 
 const FilmCard: React.FC<IProps> =  ({
+    id,
     title,
     year,
     img,
-    type
+    type,
+    user
 }) => {
     return (
       
@@ -27,7 +32,7 @@ const FilmCard: React.FC<IProps> =  ({
          {type} - {year}  
         </Card.Text>
         <div className="card-buttons">
-        <AddOrRemoveButton variant={"dark"} isPresentInList={false} onClick={() => null} />
+        <AddOrRemoveButton variant={"dark"} isPresentInList={user.favoriteMovies.some(movie => movie.id === id)} onClick={() => null} />
         <ViewButton variant={"success"} isWatched={true} onClick={() => null }/>
           
         </div>

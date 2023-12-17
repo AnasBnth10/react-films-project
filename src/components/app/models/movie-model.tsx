@@ -1,7 +1,7 @@
 import React from "react";
 
 export class Movies {
-    constructor(public Search: [Movie],
+    constructor(public Search: Movie[],
         public totalResults: string,
         public Response: String) {
 
@@ -39,4 +39,10 @@ export class Movie {
         public Response: string) {
 
     }
+}
+
+export class FavoriteMovie {
+        constructor( 
+            public id: string) {   
+        }
 }

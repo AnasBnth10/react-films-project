@@ -1,9 +1,12 @@
+import { User } from '../../models/user-model';
 import './UserStatistics.scss';
 
 interface IProps {
+  user: User
 }
 
 const UserStatistics: React.FC<IProps> =  ({
+  user
 
 }) => {
     return ( 
@@ -11,7 +14,7 @@ const UserStatistics: React.FC<IProps> =  ({
  
         <div className="statistics-section">
           <h3>Total Watch Time</h3>
-          <h1>123 hours and 45 minutes</h1>
+          <h1>{user.watchTime}</h1>
         </div>
       
         <div className="statistics-section">
@@ -25,7 +28,7 @@ const UserStatistics: React.FC<IProps> =  ({
       
         <div className="statistics-section">
           <h3>Total Movies Watched</h3>
-          <h1>56 movies</h1>
+          <h1>{user.totalMoviesWatched} movies</h1>
         </div>
       </aside>
     )
