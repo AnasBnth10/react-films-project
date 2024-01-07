@@ -73,7 +73,7 @@ const SearchFilmPage: React.FC<IProps> = ({
 
             <main>
                 <div>
-                {!isLoadingSearchMovies && !error &&<FilmsList user={user} movies={searchMovies?.Search || []} />}
+                {!isLoadingSearchMovies && !error &&<FilmsList isFavoriteFilmsPage={false} movies={searchMovies?.Search || []} />}
                 {!isLoadingSearchMovies && error && <p>Error loading movies. Please try again.</p>}
 
                 </div>
@@ -83,7 +83,7 @@ const SearchFilmPage: React.FC<IProps> = ({
                         <h2>Popular Movie List</h2>
                         <p>Explore our collection of exciting movies.</p>
 
-                        <PopularMoviesCarousel user={user}  movies={popularMovies?.Search || []} />
+                        <PopularMoviesCarousel isFavoriteFilmsPage={false}  movies={popularMovies?.Search || []} />
                     </div>
                 }
             </main>

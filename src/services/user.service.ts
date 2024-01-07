@@ -1,4 +1,4 @@
-import { FavoriteMovie } from "../components/app/models/movie-model";
+import { Movie } from "../components/app/models/movie-model";
 import { User } from "../components/app/models/user-model";
 
 export class UserService {
@@ -12,15 +12,16 @@ export class UserService {
             return userData;
         } else {
             const randomUserName = `AnasBnth`;
-            const randomWatchTime = "0 minutes";
+            const randomWatchTime = 0;
             const randomTotalMoviesWatched = 0;
-            const randomFavoriteMovies: FavoriteMovie[] = [{id: "tt0076759"}];
+            const randomFavoriteMovies: Movie[] = [{imdbID: "tt0076759", Title: "Star Wars: Episode IV - A New Hope",Poster:"https://m.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg",Year:"1977",Type:"Movie",Runtime:"121 min",Viewed:false,Genre:"Action, Adventure, Fantasy"}];
 
             const newUser = new User(
                 randomUserName,
                 randomWatchTime,
                 randomTotalMoviesWatched,
-                randomFavoriteMovies
+                randomFavoriteMovies,
+                []
             );
 
             localStorage.setItem("currentUser", JSON.stringify(newUser));

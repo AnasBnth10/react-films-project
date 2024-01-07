@@ -1,0 +1,128 @@
+/* styles.css */
+@import "../../../common/styles/variables";
+
+.movie-details-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .left-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black !important;
+    
+  }
+
+  .film-details-label{
+    color: $color-primary;
+  }
+
+  p {
+    color: white;
+  }
+  
+  
+  
+  .movie-poster {
+    width: 300px;
+    height: 400px;
+    
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-box {
+
+    height: 250px;
+    background-color: $color-primary; /* Gold color */
+    padding: 30px;
+    padding-top: 3.4rem;
+    border-radius: 0 0 8px 8px;
+    text-align: start;
+    color: black !important;
+    overflow: hidden;
+    
+  }
+
+  .info-box > p {
+    margin-bottom: 0.7rem;
+  }
+
+  .info-box-label {
+    margin-right: 3.4rem;
+    
+    
+  }
+  
+  .box-info {
+    margin: 0;
+    color: black !important;
+    
+  }
+  
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;/* Align the content to the start */
+    margin-left: 3rem;
+    width: 60%;
+    
+  }
+  
+  .details-container,
+  .additional-details,
+  .ratings-section {
+    width: 100%;
+  }
+  
+  .details-container h1,
+  .details-container h2,
+  .details-container p,
+  .additional-details h2,
+  .additional-details p,
+  .ratings-section h2,
+  .ratings-section p {
+    margin: 0;
+  }
+  
+  .additional-details {
+    display: flex;
+    flex-direction: column;
+    
+    margin-top: 20px;
+  }
+  
+  .additional-details > div {
+    width: 100%;
+  }
+  
+  .additional-details h2 {
+    margin-bottom: 10px;
+  }
+  
+  .additional-details p {
+    margin-bottom: 5px;
+  }
+  
+  .ratings-section {
+    margin-top: 20px;
+  }
+  
+  .rating {
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  
+  
+  .plot-container {
+    margin-top: 20px;
+  }
+  
+ 
+  

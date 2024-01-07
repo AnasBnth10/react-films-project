@@ -30,7 +30,21 @@ public static async searchMovieByTitle(title: string): Promise<Movies>{
         return response.json();
     }
     console.log("error");
-    throw new Error('Something went wrong while getting movies');
+    throw new Error('Something went wrong while getting movie');
+}
+
+public static async searchMovieByIMDBId(id: string): Promise<Movie>{
+    const api= process.env.REACT_APP_API;
+    const apiKey= process.env.REACT_APP_API_KEY;
+
+    const url = `${this.api}?i=${id}&type=movie&plot=full&apikey=${this.apiKey}`;
+
+    const response = await fetch(url);
+    if (response.ok) {
+        return response.json();
+    }
+    console.log("error");
+    throw new Error('Something went wrong while getting movie');
 }
 
 }

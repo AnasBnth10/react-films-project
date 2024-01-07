@@ -1,12 +1,15 @@
+import DoughnutChart from '../../../common/charts/DoughnutChart';
 import { User } from '../../models/user-model';
 import './UserStatistics.scss';
 
 interface IProps {
-  user: User
+  user: User,
+  data: any
 }
 
 const UserStatistics: React.FC<IProps> =  ({
-  user
+  user,
+  data
 
 }) => {
     return ( 
@@ -14,16 +17,19 @@ const UserStatistics: React.FC<IProps> =  ({
  
         <div className="statistics-section">
           <h3>Total Watch Time</h3>
-          <h1>{user.watchTime}</h1>
+          <h1>{user.watchTime} minutes</h1>
         </div>
       
         <div className="statistics-section">
           <h3>Time Spent on Categories</h3>
           <ul>
-            <li>Action: 25 hours</li>
-            <li>Drama: 18 hours</li>
-            <li>Comedy: 15 hours</li>
+            {
+              user.listOfGenres.map((genre) => (
+                <li><span className="genre-name">{genre.name}: </span> {genre.watchTime} minutes</li>
+              ))
+            }
           </ul>
+          <DoughnutChart data={data} />
         </div>
       
         <div className="statistics-section">

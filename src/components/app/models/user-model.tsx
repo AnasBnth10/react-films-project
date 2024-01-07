@@ -1,11 +1,13 @@
-import { FavoriteMovie } from "./movie-model";
+import { Genre } from "./genre-model";
+import { Movie } from "./movie-model";
 
 
 export class User {
     constructor(public userName: string,
-        public watchTime: string,
+        public watchTime: number,
         public totalMoviesWatched: number,
-        public favoriteMovies: FavoriteMovie[]) {
+        public favoriteMovies: Movie[],
+        public listOfGenres: Genre[]) {
 
     }
 }

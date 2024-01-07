@@ -2,20 +2,21 @@
     display: flex;
     /* Centre les éléments verticalement */
     
-    padding: 1.5rem; /* 100% de la hauteur de la vue */
+   /* 100% de la hauteur de la vue */
   }
   
   .center-container {
-    flex: 1; 
+    
+    
 
-
-    margin-left: 25%;
-    margin-right: 2%;
+    width: 90%;
+    margin-right: 10%;
+   
      /* Couleur de fond du conteneur central */
   }
   
   .right-container {
-    width: 20%; /* Largeur du conteneur à droite (ajustez selon vos besoins) */
+   /* Largeur du conteneur à droite (ajustez selon vos besoins) */
      /* Couleur de fond du conteneur à droite */
      
   }

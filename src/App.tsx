@@ -8,6 +8,7 @@ import { UserService } from './services/user.service';
 import { User } from './components/app/models/user-model';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import { userState } from './db/UserFavoriteFilms';
+import FilmDetails from './components/app/pages/film-details/FilmDetails';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route index path="/" element={<Home />} />
           <Route path="favorite-films" element={<FavoriteFilmsPage />} />
           <Route path="search" element={<SearchFilmPage />} />
+          <Route path="/film/:id" element={ <FilmDetails />}/>
           
       </Routes>
     </BrowserRouter>

@@ -14,7 +14,7 @@ const ViewButton: React.FC<IProps> =  ({
     isWatched
 }) => {
     return (
-        <Button onClick={onClick} variant={variant}>{isWatched ? <><span>Not Watched </span><FaEyeSlash  /></> : <><span>Watched </span><GrView  /></> } </Button>
+        <Button onClick={onClick} className="view-btn" variant={variant}>{isWatched ? <><FaEyeSlash color="red" style={{ color: 'red'}}  /></> : <><GrView style={{ color: "red"}}  /></> } </Button>
     )
 }
 

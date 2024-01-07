@@ -1,0 +1,28 @@
+@import "../../../common/styles/variables";
+
+.home-paragraphs {
+    margin: 0 auto;
+    text-align: center;
+    margin: 0 7rem;
+}
+.home-paragraph {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 50px;
+    margin: auto 0;
+}
+
+.home-paragraph > a {
+    color: $color-primary !important;
+    text-decoration: none;
+
+}
+
+.home-paragraph > a:hover {
+    color: $color-secondary !important;
+}
+
+h2 {
+    text-align: start;
+    margin-left: 6.5rem;
+}

@@ -5,13 +5,28 @@
 * {
   margin: 0;
   font-family: 'Crimson Text', serif;
-  color:white;
+  
 }
+
+a {
+  color:black !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color:white !important;
+}
+
+
 
 h1,h2{
   color: $color-primary !important;
   font-weight: bolder;
   
+}
+
+h3 {
+  color: white !important;
 }
 
 

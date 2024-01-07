@@ -3,42 +3,51 @@ import './FilmCard.scss';
 import AddOrRemoveButton from "../../common/buttons/AddOrRemoveButton";
 import ViewButton from "../../common/buttons/ViewButton";
 import { User } from "../models/user-model";
+import FilmCardButtons from "../../common/buttons/button-group/FilmCardButtons";
+import { LikeOrDislikeFilm } from "../helper/movies.helper";
+import { Movie } from "../models/movie-model";
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userState } from "../../../db/UserFavoriteFilms";
 
 
 interface IProps {
-    id: string,
-    title: string,
-    year: string,
-    img: string,
-    type: string,
-    user: User
+    movie: Movie
+    isFavoriteFilmsPage: boolean
 }
 
 const FilmCard: React.FC<IProps> =  ({
-    id,
-    title,
-    year,
-    img,
-    type,
-    user
+    movie,
+    isFavoriteFilmsPage
 }) => {
+
+  const [user,setUser] = useRecoilState(userState);
+  const movieDetailsLink = "/film/" + movie.imdbID;
+  const [isPresentInList, setIsPresentInList] = useState(checkIsPresentInList());
+  
+  useEffect(() => {
+    // Update isPresentInList when user data changes
+    setIsPresentInList(checkIsPresentInList());
+  }, [user]);
+
+  function checkIsPresentInList() {
+    return user.favoriteMovies.some(favoriteMovie => favoriteMovie.imdbID === movie.imdbID);
+
+  }
+  
     return (
       
         <Card className="film-card" >
-      <Card.Img variant="top" alt="" src={img} />
+      <Card.Img variant="top" alt="" src={movie.Poster} />
       <Card.Body className="film-card-body" >
-        <Card.Title>{title}</Card.Title>
+        <Card.Title><a href={movieDetailsLink}>{movie.Title}</a></Card.Title>
         <Card.Text>
-         {type} - {year}  
+         {movie.Type} - {movie.Year}  
         </Card.Text>
-        <div className="card-buttons">
-        <AddOrRemoveButton variant={"dark"} isPresentInList={user.favoriteMovies.some(movie => movie.id === id)} onClick={() => null} />
-        <ViewButton variant={"success"} isWatched={true} onClick={() => null }/>
-          
-        </div>
+        <FilmCardButtons setUser={setUser} movie={movie} isPresentInList={isPresentInList} isFavoriteFilmsPage={isFavoriteFilmsPage} />
       </Card.Body>
     </Card>
-    )
+    ) 
 }
 
 export default FilmCard;

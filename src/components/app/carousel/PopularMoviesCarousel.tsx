@@ -6,30 +6,32 @@ import FilmCard from "../films/FilmCard";
 import { User } from "../models/user-model";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../db/UserFavoriteFilms";
+import Skeleton from "react-loading-skeleton";
 
 
 
 interface IProps {
     movies: Movie[],
-    user: User
+    isFavoriteFilmsPage: boolean
+
 }
 
 const PopularMoviesCarousel: React.FC<IProps> =  ({
     movies,
-    user
+    isFavoriteFilmsPage
 }) => {
 
-    user = useRecoilValue(userState);
+    const user = useRecoilValue(userState);
 
     useEffect(()=> {
         console.log(movies[0]);
     },[])
     return (
         <Carousel interval={3000} indicators={false}>         
-        <Carousel.Item >
+        <Carousel.Item>
           <div className="films-row">
           {movies.slice(0,5).map((movie, index) => (             
-            <FilmCard id={movie.imdbID} user={user} title={movie.Title} img={movie.Poster} year={movie.Year} type={movie.Type}/>                     
+            <FilmCard movie={movie} isFavoriteFilmsPage={isFavoriteFilmsPage}  />  || <Skeleton/>                  
           ))}     
         </div>
         
@@ -37,7 +39,7 @@ const PopularMoviesCarousel: React.FC<IProps> =  ({
         <Carousel.Item >
         <div className="films-row">
           {movies.slice(5,10).map((movie, index) => (             
-            <FilmCard id={movie.imdbID} user={user} title={movie.Title} img={movie.Poster} year={movie.Year} type={movie.Type}/>                     
+            <FilmCard movie={movie} isFavoriteFilmsPage={isFavoriteFilmsPage}   />                     
           ))}     
         </div>
         
