@@ -9,6 +9,7 @@ import {User} from "../../models/user-model";
 import { initializeHomePageMovies } from "../../helper/movies.helper";
 import Skeleton from "react-loading-skeleton";
 import "./Home.scss";
+import CustomSkeleton from "../../../common/skeleton/CustomSkeleton";
 
 interface IProps {}
 
@@ -69,17 +70,21 @@ const Home : React.FC < IProps > = ({}) => {
       <br/>
       <br/>
       </div>
+      <div style={{backgroundColor:"red"}}>
+        
+      </div>
             {!isLoading ?
             <>
             <h2>Indiana Jones</h2>
-            <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={FirstRowMovies?.Search || []} />
+            {!isLoadingRow1 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={FirstRowMovies?.Search || []} /> : <CustomSkeleton /> }
             <br/>
             <h2>Star Wars</h2>
-            <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={SecondRowMovies?.Search || []} />
+            {!isLoadingRow2 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={SecondRowMovies?.Search || []} /> : <CustomSkeleton />}
             <br/>
             <h2>The Matrix</h2>
-            <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={ThirdRowMovies?.Search || []} />
-            </> : <Skeleton />
+            {!isLoadingRow3 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={ThirdRowMovies?.Search || []} /> : <CustomSkeleton />}
+            
+            </> : <></>  
             }
         </Layout>
     )

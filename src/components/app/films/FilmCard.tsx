@@ -9,6 +9,8 @@ import { Movie } from "../models/movie-model";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../../db/UserFavoriteFilms";
+import Skeleton from "react-loading-skeleton";
+import CustomSkeleton from "../../common/skeleton/CustomSkeleton";
 
 
 interface IProps {
@@ -24,6 +26,7 @@ const FilmCard: React.FC<IProps> =  ({
   const [user,setUser] = useRecoilState(userState);
   const movieDetailsLink = "/film/" + movie.imdbID;
   const [isPresentInList, setIsPresentInList] = useState(checkIsPresentInList());
+  let isLoading = true;
   
   useEffect(() => {
     // Update isPresentInList when user data changes
@@ -40,9 +43,9 @@ const FilmCard: React.FC<IProps> =  ({
         <Card className="film-card" >
       <Card.Img variant="top" alt="" src={movie.Poster} />
       <Card.Body className="film-card-body" >
-        <Card.Title><a href={movieDetailsLink}>{movie.Title}</a></Card.Title>
+        <Card.Title><a href={movieDetailsLink}>{movie.Title || <CustomSkeleton/>}</a></Card.Title>
         <Card.Text>
-         {movie.Type} - {movie.Year}  
+         {(movie.Type + " - " + movie.Year) || <CustomSkeleton/>}
         </Card.Text>
         <FilmCardButtons setUser={setUser} movie={movie} isPresentInList={isPresentInList} isFavoriteFilmsPage={isFavoriteFilmsPage} />
       </Card.Body>
