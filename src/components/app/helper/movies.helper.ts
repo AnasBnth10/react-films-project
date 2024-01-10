@@ -1,3 +1,4 @@
+import { GraphDataService } from "../../../services/chart.service";
 import { FilmsApiService } from "../../../services/film.service";
 import { Genre } from "../models/genre-model";
 import { Movie, Movies } from "../models/movie-model";
@@ -105,7 +106,7 @@ export const LikeOrDislikeFilm = async (
   localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 };
 
-export const ViewOrUnviewFilm = (movie: Movie, user: User, setUser: (value: User) => void) => {
+export const ViewOrUnviewFilm = (movie: Movie, user: User, setUser: (value: User) => void,setGraphData: (data : {}) => void) => {
   const updatedUser = { ...user };
   const isMovieViewed: boolean = movie.Viewed;
 
@@ -181,6 +182,7 @@ export const ViewOrUnviewFilm = (movie: Movie, user: User, setUser: (value: User
   updatedUser.watchTime = totalWatchTime;
   updatedUser.totalMoviesWatched = totalMoviesWatched;
 
+  GraphDataService.prepareGraphData(updatedUser,setGraphData);
   setUser(updatedUser);
   localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 };

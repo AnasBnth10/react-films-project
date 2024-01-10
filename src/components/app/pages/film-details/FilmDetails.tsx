@@ -54,11 +54,8 @@ const FilmDetails : React.FC < IProps > = ({}) => {
     useEffect(() => {
         setIsLoading(true);
 
-        console.log(id);
-
         FilmsApiService.searchMovieByIMDBId(id || "").then(
             responseMovie => {
-                console.log(responseMovie);
                 setMovie(responseMovie);
             }
         ).catch(() => setError(true))

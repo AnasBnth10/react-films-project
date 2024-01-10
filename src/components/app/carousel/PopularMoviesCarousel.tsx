@@ -21,11 +21,6 @@ const PopularMoviesCarousel: React.FC<IProps> =  ({
     isFavoriteFilmsPage
 }) => {
 
-    const user = useRecoilValue(userState);
-
-    useEffect(()=> {
-        console.log(movies[0]);
-    },[])
     return (
         <Carousel interval={3000} indicators={false}>         
         <Carousel.Item>

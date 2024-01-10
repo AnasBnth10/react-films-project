@@ -43,7 +43,6 @@ const SearchFilmPage: React.FC<IProps> = ({
 
     const onClickSearchBtnHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         setIsLoadingSearchMovies(true);
-        console.log("check");
 
         FilmsApiService.searchMoviesBySearch(search).then(
             response => {

@@ -3,6 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 
 
+
 interface IProps {
 data: any
 }
@@ -12,7 +13,9 @@ data
 }) => {
     Chart.register(ArcElement, Tooltip, Legend);
     return (
+        <div className='chart-container'>
         <Doughnut data={data} />
+        </div>
     )
 }
 

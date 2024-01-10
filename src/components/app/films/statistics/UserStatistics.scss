@@ -23,13 +23,22 @@
 ul {
   list-style-type: none;
   padding: 0;
+  
 
   li {
     margin-bottom: 8px;
-    color: $color-primary;
+    
   }
 }
 
 .genre-name {
-  color: white !important;
+  color: black !important;
+}
+
+
+
+.chart-container {
+  background-color: $color-primary;
+  border-radius: 0.5em;
+  color: black;
 }

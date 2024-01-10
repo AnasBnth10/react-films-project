@@ -29,7 +29,7 @@ const FilmCard: React.FC<IProps> =  ({
   let isLoading = true;
   
   useEffect(() => {
-    // Update isPresentInList when user data changes
+    console.log(user);
     setIsPresentInList(checkIsPresentInList());
   }, [user]);
 

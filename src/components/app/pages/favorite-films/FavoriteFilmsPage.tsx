@@ -7,8 +7,9 @@ import {Movies as MoviesModel} from "../../models/movie-model";
 import FilmsList from "../../films/films-list/FilmsList";
 import UserStatistics from "../../films/statistics/UserStatistics";
 import {User} from "../../models/user-model";
-import {useRecoilValue} from "recoil";
-import {userState} from "../../../../db/UserFavoriteFilms";
+import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
+import {graphDataState, userState} from "../../../../db/UserFavoriteFilms";
+import { GraphDataService } from "../../../../services/chart.service";
 
 interface IProps {}
 
@@ -20,47 +21,15 @@ const FavoriteFilmsPage : React.FC < IProps > = ({}) => {
         setError] = useState(false);
     const [movies,
         setMovies] = useState < MoviesModel > ();
-    const [data,
-        setData] = useState({});
     const user : User = useRecoilValue(userState);
+    const [graphData,setGraphData] = useRecoilState(graphDataState);
 
     useEffect(() => {
         setIsLoading(true);
 
-        const doughnutChartColors: string[] = [
-            "#4CAF50", // Green
-            "#2196F3", // Blue
-            "#FFC107", // Yellow
-            "#E91E63", // Pink
-            "#673AB7", // Purple
-            "#FF5722", // Deep Orange
-            "#9C27B0", // Deep Purple
-            "#FF9800", // Orange
-            "#00BCD4", // Cyan
-            "#795548"  // Brown
-          ];
-          
+        GraphDataService.prepareGraphData(user,setGraphData);
 
-        let _labels : string[] = [];
-        let _data : number[] = [];
-        user
-            .listOfGenres
-            .forEach(genre => {
-                _labels.push(genre.name);
-                _data.push(genre.watchTime);
-            })
-
-        setData({
-            labels: _labels,
-            datasets: [
-                {
-                    label: 'Watchtime',
-                    data: _data,
-                    backgroundColor: doughnutChartColors.slice(0,_labels.length),
-                    hoverOffset: 4
-                }
-            ]
-        })
+        console.log()
 
         setIsLoading(false);
 
@@ -90,7 +59,7 @@ const FavoriteFilmsPage : React.FC < IProps > = ({}) => {
                         padding: '20px'
                     }}>
                         <h2>Viewing Statistics</h2>
-                        {!isLoading && <UserStatistics data={data} user={user}/>}
+                        {!isLoading && <UserStatistics data={graphData} user={user}/>}
                         {/* Mettez ici le contenu de votre aside */}
                     </div>
                 </aside>

@@ -4,7 +4,7 @@ import './UserStatistics.scss';
 
 interface IProps {
   user: User,
-  data: any
+  data: {}
 }
 
 const UserStatistics: React.FC<IProps> =  ({
@@ -22,7 +22,10 @@ const UserStatistics: React.FC<IProps> =  ({
       
         <div className="statistics-section">
           <h3>Time Spent on Categories</h3>
-          <ul>
+          
+          <div className='chart-container'>
+          {
+            Object.keys(data).length != 0 ? <> <ul>
             {
               user.listOfGenres.map((genre) => (
                 <li><span className="genre-name">{genre.name}: </span> {genre.watchTime} minutes</li>
@@ -30,6 +33,10 @@ const UserStatistics: React.FC<IProps> =  ({
             }
           </ul>
           <DoughnutChart data={data} />
+          <br/>
+          </> : <h3>No data</h3>
+          }
+          </div>
         </div>
       
         <div className="statistics-section">

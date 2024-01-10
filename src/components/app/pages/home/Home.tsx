@@ -30,7 +30,6 @@ const Home : React.FC < IProps > = ({}) => {
         setIsLoadingRow3] = useState(false);
             const [isLoading,
                 setIsLoading] = useState(false);
-    const user : User = useRecoilValue(userState);
 
     useEffect(() => {
         setIsLoading(true);
