@@ -27,6 +27,12 @@ export class GraphDataService {
                 _data.push(genre.watchTime);
             });
 
+            if(_data.length === 0)
+            {
+                setGraphData({});
+            }
+            else {
+
             setGraphData({
                 labels: _labels,
                 datasets: [
@@ -38,5 +44,6 @@ export class GraphDataService {
                     }
                 ]
             })
+        }
 }
 }

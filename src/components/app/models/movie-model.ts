@@ -4,7 +4,8 @@ export class Movies {
   constructor(
     public Search: Movie[],
     public totalResults: string,
-    public Response: string
+    public Response: string,
+    public Error?: string | undefined
   ) {}
 }
 
@@ -36,7 +37,7 @@ export class  Movie {
     public BoxOffice?: string,
     public Production?: string,
     public Website?: string,
-    public Response?: string,
+    public Response?: string
   ) {}
  
 }

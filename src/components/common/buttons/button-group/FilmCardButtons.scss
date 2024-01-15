@@ -2,18 +2,15 @@
 .card-buttons {
   
     display: flex;
+    flex-direction: column;
     gap: 0.7rem;
     justify-content: center;
+    align-items: center;
+    
     
     
 }
   
-  .card-buttons button:nth-child(1):only-child,
-  .card-buttons button:nth-child(2):only-child {
-    width: 100%; /* Make each button 100% width when the other is hidden */
-  }
   
-  .card-buttons button:nth-child(1):not(:only-child),
-  .card-buttons button:nth-child(2):not(:only-child) {
-    width: 40%; /* Make both buttons 30% width when both are present */
-  }
+  
+  

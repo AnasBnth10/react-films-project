@@ -1,8 +1,11 @@
 .app-container {
   display: flex;
-  /* Centre les éléments verticalement */
+  text-align: center;
+ 
+}
 
-  /* 100% de la hauteur de la vue */
+h2 {
+  text-align: center !important;
 }
 
 .center-container {
@@ -10,12 +13,14 @@
 
 
   width: 90%;
-  margin-right: 10%;
+  
 
   /* Couleur de fond du conteneur central */
 }
 
 .right-container {
+  text-align: center;
+
   /* Largeur du conteneur à droite (ajustez selon vos besoins) */
   /* Couleur de fond du conteneur à droite */
 

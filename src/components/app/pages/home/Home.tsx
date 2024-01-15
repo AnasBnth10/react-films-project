@@ -4,7 +4,7 @@ import PopularMoviesCarousel from "../../carousel/PopularMoviesCarousel";
 import {Movies as MoviesModel} from "../../models/movie-model";
 import {FilmsApiService} from "../../../../services/film.service";
 import {useRecoilValue} from "recoil";
-import {userState} from "../../../../db/UserFavoriteFilms";
+import {userState} from "../../../../atoms/UserFavoriteFilms";
 import {User} from "../../models/user-model";
 import { initializeHomePageMovies } from "../../helper/movies.helper";
 import Skeleton from "react-loading-skeleton";
@@ -56,7 +56,7 @@ const Home : React.FC < IProps > = ({}) => {
       <p className="home-paragraph">
         Don't forget to interact with our content! Use the thumbs up to show your appreciation for
         movies you love, and we'll keep track of your favorites on your personalized{' '}
-        <a href="/favorites">Favorites Page</a>. Keep an eye on your watchtime and explore insightful
+        <a href="/favorite-films">Favorites Page</a>. Keep an eye on your watchtime and explore insightful
         statistics about your viewing habits.Looking for something specific? Head over to our <a href="/search">Search Page</a> to find
         detailed information about any movie. Get a quick overview, check out the cast and crew,
         and read reviews before deciding what to watch next.
@@ -75,13 +75,13 @@ const Home : React.FC < IProps > = ({}) => {
             {!isLoading ?
             <>
             <h2>Indiana Jones</h2>
-            {!isLoadingRow1 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={FirstRowMovies?.Search || []} /> : <CustomSkeleton /> }
+            {!isLoadingRow1 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={FirstRowMovies?.Search || []} /> : <CustomSkeleton width={1300} height={400} /> }
             <br/>
             <h2>Star Wars</h2>
-            {!isLoadingRow2 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={SecondRowMovies?.Search || []} /> : <CustomSkeleton />}
+            {!isLoadingRow2 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={SecondRowMovies?.Search || []} /> : <CustomSkeleton width={1300} height={400} />}
             <br/>
             <h2>The Matrix</h2>
-            {!isLoadingRow3 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={ThirdRowMovies?.Search || []} /> : <CustomSkeleton />}
+            {!isLoadingRow3 ? <PopularMoviesCarousel isFavoriteFilmsPage={false} movies={ThirdRowMovies?.Search || []} /> : <CustomSkeleton width={1300} height={400} />}
             
             </> : <></>  
             }

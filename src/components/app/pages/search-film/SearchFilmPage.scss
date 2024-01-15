@@ -39,6 +39,13 @@ header > .search-btn:hover {
     
 }
 
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #movie-list {
     margin-top: 20px;
     margin: auto 0;

@@ -65,8 +65,12 @@ export const initializeHomePageMovies = async (
 export const LikeOrDislikeFilm = async (
   movie: Movie,
   user: User,
-  setUser: (value: User) => void
+  setUser: (value: User) => void,
+  setIsLoading: (value: boolean) => void,
+  setGraphData: (data : {}) => void
 ) => {
+  setIsLoading(true);
+
   const favoriteMovies = user.favoriteMovies;
   const isMovieInList = favoriteMovies.some(
     (favoriteMovie) => favoriteMovie.imdbID === movie.imdbID
@@ -95,8 +99,10 @@ export const LikeOrDislikeFilm = async (
       (favoriteMovie) => favoriteMovie.imdbID !== movie.imdbID
     );
 
+    const unviewFilmUser = ViewOrUnviewFilm(movie,user,setUser,setGraphData);
+
     updatedUser = {
-      ...user,
+      ...unviewFilmUser,
       favoriteMovies: newFavoriteMovies,
     };
     
@@ -104,6 +110,7 @@ export const LikeOrDislikeFilm = async (
 
   setUser(updatedUser);
   localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+  setIsLoading(false);
 };
 
 export const ViewOrUnviewFilm = (movie: Movie, user: User, setUser: (value: User) => void,setGraphData: (data : {}) => void) => {
@@ -185,4 +192,5 @@ export const ViewOrUnviewFilm = (movie: Movie, user: User, setUser: (value: User
   GraphDataService.prepareGraphData(updatedUser,setGraphData);
   setUser(updatedUser);
   localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+  return updatedUser;
 };

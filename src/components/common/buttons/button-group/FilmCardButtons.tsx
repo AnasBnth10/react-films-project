@@ -1,7 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { graphDataState, userState } from "../../../../db/UserFavoriteFilms";
+import { graphDataState, userState } from "../../../../atoms/UserFavoriteFilms";
 import AddOrRemoveButton from "../AddOrRemoveButton";
-import ViewButton from "../ViewButton";
 import "./FilmCardButtons.scss";
 import { Movie } from "../../../app/models/movie-model";
 import { LikeOrDislikeFilm, ViewOrUnviewFilm } from "../../../app/helper/movies.helper";
@@ -12,14 +11,16 @@ interface IProps {
     isPresentInList: boolean,
     isFavoriteFilmsPage: boolean,
     movie: Movie,
-    setUser: (value: User) => void
+    setUser: (value: User) => void,
+    setIsLoading: (value: boolean) => void,
     
 }
 
 const FilmCardButtons: React.FC<IProps> = ({
     isFavoriteFilmsPage,
     movie,
-    setUser
+    setUser,
+    setIsLoading
     
 }) => {
     const user = useRecoilValue(userState);
@@ -29,7 +30,7 @@ const FilmCardButtons: React.FC<IProps> = ({
     
     return (
     <div className="card-buttons">
-        <AddOrRemoveButton  isPresentInList={isPresentInUserList} onClick={() => LikeOrDislikeFilm(movie,user,setUser)} />
+        <AddOrRemoveButton  isPresentInList={isPresentInUserList} onClick={() => LikeOrDislikeFilm(movie,user,setUser,setIsLoading,setGraphData)} />
         {isFavoriteFilmsPage &&
           <ViewOrUnviewButton isViewed={movie.Viewed} onClick={() => ViewOrUnviewFilm(movie,user, setUser,setGraphData) }/>}
           

@@ -24,8 +24,11 @@ const UserStatistics: React.FC<IProps> =  ({
           <h3>Time Spent on Categories</h3>
           
           <div className='chart-container'>
+          
           {
-            Object.keys(data).length != 0 ? <> <ul>
+            Object.keys(data).length != 0 ? <> 
+            <h3>Categories</h3>
+            <ul>
             {
               user.listOfGenres.map((genre) => (
                 <li><span className="genre-name">{genre.name}: </span> {genre.watchTime} minutes</li>
@@ -34,10 +37,12 @@ const UserStatistics: React.FC<IProps> =  ({
           </ul>
           <DoughnutChart data={data} />
           <br/>
-          </> : <h3>No data</h3>
+          </> : <div className='no-viewed-films-box'>
+            <p className='no-viewed-films-message'>No movies watched yet...  Start exploring and enjoy your film journey!</p></div>
           }
           </div>
         </div>
+        <br/>
       
         <div className="statistics-section">
           <h3>Total Movies Watched</h3>

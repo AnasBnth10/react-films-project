@@ -8,7 +8,7 @@ import FilmsList from "../../films/films-list/FilmsList";
 import UserStatistics from "../../films/statistics/UserStatistics";
 import {User} from "../../models/user-model";
 import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
-import {graphDataState, userState} from "../../../../db/UserFavoriteFilms";
+import {graphDataState, userState} from "../../../../atoms/UserFavoriteFilms";
 import { GraphDataService } from "../../../../services/chart.service";
 
 interface IProps {}
@@ -28,8 +28,6 @@ const FavoriteFilmsPage : React.FC < IProps > = ({}) => {
         setIsLoading(true);
 
         GraphDataService.prepareGraphData(user,setGraphData);
-
-        console.log()
 
         setIsLoading(false);
 

@@ -7,7 +7,7 @@ import SearchFilmPage from './components/app/pages/search-film/SearchFilmPage';
 import { UserService } from './services/user.service';
 import { User } from './components/app/models/user-model';
 import { RecoilRoot, useRecoilValue } from 'recoil';
-import { userState } from './db/UserFavoriteFilms';
+import { userState } from './atoms/UserFavoriteFilms';
 import FilmDetails from './components/app/pages/film-details/FilmDetails';
 
 

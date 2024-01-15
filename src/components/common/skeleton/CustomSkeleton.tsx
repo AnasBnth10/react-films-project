@@ -6,12 +6,16 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 
 interface IProps {
+    width?: string | number | undefined,
+    height?: string | number | undefined
 }
 
 const CustomSkeleton: React.FC<IProps> =  ({
+    width,
+    height
 }) => {
     return (
-       <Skeleton baseColor="lightgrey" highlightColor="F0E68C" />
+       <Skeleton baseColor="#F0E68C" highlightColor="lightgrey" width={width} height={height} />
     )
 }
 

@@ -1,5 +1,5 @@
 import {useRecoilValue} from "recoil";
-import {userState} from "../../../../db/UserFavoriteFilms";
+import {userState} from "../../../../atoms/UserFavoriteFilms";
 import {User} from "../../models/user-model";
 import {useEffect, useState} from "react";
 import Layout from "../../../common/layout/Layout";
