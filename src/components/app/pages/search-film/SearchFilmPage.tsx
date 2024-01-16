@@ -6,12 +6,10 @@ import './SearchFilmPage.scss';
 import {Movies as MoviesModel} from "../../models/movie-model";
 import PopularMoviesCarousel from "../../carousel/PopularMoviesCarousel";
 import FilmsList from "../../films/films-list/FilmsList";
-import {useRecoilValue} from "recoil";
-import {userState} from "../../../../atoms/UserFavoriteFilms";
-import {User} from "../../models/user-model";
 import CustomLoader from "../../../common/loader/CustomLoader";
 import { SearchMovieError } from "../../models/movie-error-model";
 import CustomSkeleton from "../../../common/skeleton/CustomSkeleton";
+import CarouselErrorComponent from "../../errors/CarouselErrorComponent";
 
 interface IProps {}
 
@@ -20,8 +18,10 @@ const SearchFilmPage : React.FC < IProps > = ({}) => {
         setIsLoadingPopularMovies] = useState(true);
     const [isLoadingSearchMovies,
         setIsLoadingSearchMovies] = useState(false);
-    const [error,
-        setError] = useState<SearchMovieError>();
+    const [searchError,
+        setSearchError] = useState<SearchMovieError>();
+        const [popularMoviesError,
+            setPopularMoviesError] = useState(false);
     const [popularMovies,
         setPopularMovies] = useState < MoviesModel > ();
     const [searchMovies,
@@ -51,14 +51,18 @@ const SearchFilmPage : React.FC < IProps > = ({}) => {
     }
 
     const onClickSearchBtnHandler = (e : React.MouseEvent < HTMLButtonElement >) => {
-        //setError(false);
         setIsLoadingSearchMovies(true);
 
+        let errorMessage = "Something went wrong while getting movies.";
+        
+        if(search === ""){
+            errorMessage = "Search input is empty! Please fill in a value..."
+        }
         FilmsApiService
             .searchMoviesBySearch(search)
             .then(response => {
                 if (response.Response === "False") {
-                    let errorMessage = "No errors";
+                    
                     if(response.Error === "Movie not found!")
                     {
                         errorMessage = "No movies found!";
@@ -68,9 +72,9 @@ const SearchFilmPage : React.FC < IProps > = ({}) => {
                         errorMessage = "Too many results! Try refining your search to get more accurate results.";
                     }
                     const error = new SearchMovieError(response.Response,errorMessage);
-                    setError(error);
+                    setSearchError(error);
                 } else {
-                    setError(undefined);
+                    setSearchError(undefined);
                     setSearchMovies(response);
                 }
             })
@@ -95,24 +99,19 @@ const SearchFilmPage : React.FC < IProps > = ({}) => {
 
                 <div className="search-section">
                     {isLoadingSearchMovies && <CustomLoader loading={isLoadingSearchMovies}/>}
-                    {!isLoadingSearchMovies && searchMovies?.Search && !error &&< FilmsList isFavoriteFilmsPage = {false}
+                    {!isLoadingSearchMovies && searchMovies?.Search && !searchError &&< FilmsList isFavoriteFilmsPage = {false}
                     movies = {
                         searchMovies
                             ?.Search || []
                     } />}
-                    {!isLoadingSearchMovies && error && <p>{error.error}</p>}
+                    {!isLoadingSearchMovies && searchError && <p>{searchError.error}</p>}
 
                 </div>
                  <div id="movie-list">
 
                     <h2>Popular Movie List</h2>
                     <p>Explore our collection of exciting movies.</p>
-                    {!isLoadingPopularMovies ?
-                    <PopularMoviesCarousel
-                        isFavoriteFilmsPage={false}
-                        movies={popularMovies
-                        ?.Search || []
-                        }/> : <CustomSkeleton width={1200} height={300}  />}
+                    <CarouselErrorComponent isLoading={isLoadingPopularMovies} isFavoriteFilmsPage={false} error={popularMoviesError} movies={popularMovies?.Search || []}/>
                 </div> 
 
             </main>

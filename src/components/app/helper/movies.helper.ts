@@ -21,7 +21,10 @@ export const initializeHomePageMovies = async (
   setThirdRowMovies: (value: Movies | undefined) => void,
   setIsLoading1: (value: boolean) => void,
   setIsLoading2: (value: boolean) => void,
-  setIsLoading3: (value: boolean) => void
+  setIsLoading3: (value: boolean) => void,
+  setErrorRow1: (value: boolean) => void,
+  setErrorRow2: (value: boolean) => void,
+  setErrorRow3: (value: boolean) => void
 ) => {
   setAllLoadings(setIsLoading1, setIsLoading2, setIsLoading3, true);
 
@@ -49,6 +52,15 @@ export const initializeHomePageMovies = async (
       const movies = await FilmsApiService.searchMoviesBySearch(query);
       handleMoviesSet(query, movies);
     } catch (error) {
+      if(error === "Indiana Jones"){
+        setErrorRow1(true);
+      }
+      else if(error === "Star Wars"){
+        setErrorRow2(true);
+      }
+      else if(error === "The Matrix"){
+        setErrorRow3(true);
+      }
       console.error(`Error fetching movies for "${query}"`, error);
     }
   };

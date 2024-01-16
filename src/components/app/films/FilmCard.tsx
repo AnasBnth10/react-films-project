@@ -21,8 +21,18 @@ const FilmCard: React.FC<IProps> = ({ movie, isFavoriteFilmsPage }) => {
     const movieDetailsLink = "/film/" + movie.imdbID;
     const [isPresentInList, setIsPresentInList] = useState(checkIsPresentInList());
     const [isLoading, setIsLoading] = useState(false);
+    const [moviePoster,setMoviePoster] = useState("");
+    const NO_IMAGE_AVAILABLE_PATH = "/no-poster-image.png";
 
     useEffect(() => {
+        console.log(movie?.Poster);
+        if(movie?.Poster === "N/A")
+        {
+            setMoviePoster(NO_IMAGE_AVAILABLE_PATH);
+        }
+        else {
+            setMoviePoster(movie.Poster);
+        }
         setIsPresentInList(checkIsPresentInList());
     }, [user]);
 
@@ -33,7 +43,7 @@ const FilmCard: React.FC<IProps> = ({ movie, isFavoriteFilmsPage }) => {
     return (
         !isLoading ? (
             <Card className="film-card">
-                <Card.Img variant="top" alt="" src={movie.Poster} />
+                <Card.Img variant="top" alt="" src={moviePoster} />
                 <Card.Body className="film-card-body">
                     <Card.Title>
                         <a href={movieDetailsLink}>{movie.Title || <CustomSkeleton />}</a>
