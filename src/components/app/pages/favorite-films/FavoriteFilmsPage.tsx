@@ -50,7 +50,6 @@ const FavoriteFilmsPage : React.FC < IProps > = ({}) => {
                     </div>
                 </section>
 
-                {/* Conteneur à droite (beaucoup moins large) */}
                 <aside className="right-container">
                     {/* Contenu du conteneur à droite */}
                     <div style={{
@@ -58,7 +57,7 @@ const FavoriteFilmsPage : React.FC < IProps > = ({}) => {
                     }}>
                         <h2>Viewing Statistics</h2>
                         {!isLoading && <UserStatistics data={graphData} user={user}/>}
-                        {/* Mettez ici le contenu de votre aside */}
+                        
                     </div>
                 </aside>
             </div>
